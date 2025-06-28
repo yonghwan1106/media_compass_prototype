@@ -1,0 +1,20 @@
+{
+  "api_status": "operational",
+  "timestamp": "2025-06-28T12:45:30.123Z",
+  "version": "1.0.0",
+  "environment": "production",
+  "uptime_seconds": 2847123,
+  "memory_usage": {
+    "rss": "185.2 MB",
+    "heapTotal": "142.8 MB",
+    "heapUsed": "98.4 MB"
+  },
+  "database_status": "connected",
+  "services": {
+    "kcc_api": "operational",
+    "neon_db": "connected",
+    "analysis_engine": "ready"
+  },
+  "last_health_check": "2025-06-28T12:45:25.456Z",
+  "response_time_ms": 42
+}

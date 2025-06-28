@@ -1,0 +1,35 @@
+127.0.0.1 - - [28/Jun/2025 13:23:00] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 13:23:00] "GET /data.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 13:23:00] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 13:23:00] code 404, message File not found
+127.0.0.1 - - [28/Jun/2025 13:23:00] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [28/Jun/2025 13:55:33] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 13:55:33] "GET /data.js HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 13:55:33] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:03:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:03:19] "GET /data.js HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:03:19] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:03:34] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:03:34] "GET /data.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:03:34] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:03:35] code 404, message File not found
+127.0.0.1 - - [28/Jun/2025 14:03:35] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [28/Jun/2025 14:04:10] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:04:10] "GET /data.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:04:10] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2025 14:04:10] code 404, message File not found
+127.0.0.1 - - [28/Jun/2025 14:04:10] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [28/Jun/2025 14:04:38] "GET / HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:04:38] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:04:39] "GET / HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:05:09] "GET / HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:05:10] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:05:12] code 404, message File not found
+127.0.0.1 - - [28/Jun/2025 14:05:12] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+127.0.0.1 - - [28/Jun/2025 14:11:36] code 404, message File not found
+127.0.0.1 - - [28/Jun/2025 14:11:36] "GET /demo.html HTTP/1.1" 404 -
+127.0.0.1 - - [28/Jun/2025 14:11:36] code 404, message File not found
+127.0.0.1 - - [28/Jun/2025 14:11:36] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [28/Jun/2025 14:11:38] "GET / HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:11:39] "GET /data.js HTTP/1.1" 304 -
+127.0.0.1 - - [28/Jun/2025 14:11:39] "GET /script.js HTTP/1.1" 304 -

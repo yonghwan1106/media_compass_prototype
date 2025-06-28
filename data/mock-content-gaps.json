@@ -1,0 +1,246 @@
+{
+  "analysis_timestamp": "2025-06-28T12:45:30.123Z",
+  "algorithm_version": "1.8.0",
+  "regions_analyzed": 17,
+  "genres_analyzed": 12,
+  "total_gaps_identified": 24,
+  "methodology": {
+    "demand_calculation": "지역별 시청 선호도 + 인구 통계 + 문화적 요인",
+    "supply_calculation": "현재 방송 프로그램 수 + 방송 시간 + 채널 다양성",
+    "gap_score": "(수요점수 - 공급점수) / 수요점수 * 100"
+  },
+  "content_gaps": [
+    {
+      "region": "강원도",
+      "genre": "지역 다큐멘터리",
+      "demand_score": 87.3,
+      "supply_score": 23.1,
+      "gap_score": 73.5,
+      "priority_rank": 1,
+      "urgency": "매우 높음",
+      "potential_audience": 450000,
+      "current_programs": 3,
+      "recommended_programs": 12,
+      "gap_analysis": {
+        "demand_factors": ["관광객 증가", "지역 문화 관심 증대", "자연환경 콘텐츠 선호"],
+        "supply_shortage": "지역 특화 다큐 부족, 제작 인프라 미비",
+        "opportunity": "강원도만의 독특한 자연·문화 콘텐츠 제작 가능"
+      }
+    },
+    {
+      "region": "전라북도",
+      "genre": "전통문화",
+      "demand_score": 82.7,
+      "supply_score": 28.4,
+      "gap_score": 65.6,
+      "priority_rank": 2,
+      "urgency": "높음",
+      "potential_audience": 380000,
+      "current_programs": 4,
+      "recommended_programs": 10,
+      "gap_analysis": {
+        "demand_factors": ["한식 문화 관심", "전통 예술 재조명", "문화유산 가치 인식"],
+        "supply_shortage": "전통문화 전문 채널 부족, 젊은층 접근성 미흡",
+        "opportunity": "전주 한옥마을, 판소리 등 고유 문화자원 활용"
+      }
+    },
+    {
+      "region": "제주도",
+      "genre": "환경·생태",
+      "demand_score": 91.2,
+      "supply_score": 34.8,
+      "gap_score": 61.8,
+      "priority_rank": 3,
+      "urgency": "높음",
+      "potential_audience": 290000,
+      "current_programs": 6,
+      "recommended_programs": 15,
+      "gap_analysis": {
+        "demand_factors": ["환경 보호 의식", "생태 관광 확산", "기후변화 관심"],
+        "supply_shortage": "해양 생태 전문 프로그램 부족",
+        "opportunity": "유네스코 자연유산 활용한 고품질 생태 콘텐츠"
+      }
+    },
+    {
+      "region": "경상북도",
+      "genre": "역사 다큐멘터리",
+      "demand_score": 85.9,
+      "supply_score": 36.2,
+      "gap_score": 57.8,
+      "priority_rank": 4,
+      "urgency": "중간",
+      "potential_audience": 520000,
+      "current_programs": 7,
+      "recommended_programs": 16,
+      "gap_analysis": {
+        "demand_factors": ["신라 역사 관심", "문화재 가치 재발견", "역사 교육 수요"],
+        "supply_shortage": "지역 역사 전문 제작진 부족",
+        "opportunity": "경주, 안동 등 역사도시 스토리텔링"
+      }
+    },
+    {
+      "region": "충청남도",
+      "genre": "농업·농촌",
+      "demand_score": 78.4,
+      "supply_score": 32.7,
+      "gap_score": 58.3,
+      "priority_rank": 5,
+      "urgency": "중간",
+      "potential_audience": 410000,
+      "current_programs": 5,
+      "recommended_programs": 11,
+      "gap_analysis": {
+        "demand_factors": ["청년 귀농 증가", "친환경 농업 관심", "로컬푸드 확산"],
+        "supply_shortage": "농업 전문 방송 시간 부족",
+        "opportunity": "스마트팜, 6차 산업화 등 현대적 농업 접근"
+      }
+    },
+    {
+      "region": "부산광역시",
+      "genre": "해양문화",
+      "demand_score": 83.1,
+      "supply_score": 39.5,
+      "gap_score": 52.5,
+      "priority_rank": 6,
+      "urgency": "중간",
+      "potential_audience": 680000,
+      "current_programs": 8,
+      "recommended_programs": 17,
+      "gap_analysis": {
+        "demand_factors": ["해양도시 정체성", "국제 해양문화 교류", "해양 레저 확산"],
+        "supply_shortage": "해양문화 특화 프로그램 다양성 부족",
+        "opportunity": "국제 해양 영화제, 해양 스포츠 연계 콘텐츠"
+      }
+    },
+    {
+      "region": "인천광역시",
+      "genre": "국제문화",
+      "demand_score": 79.8,
+      "supply_score": 38.9,
+      "gap_score": 51.2,
+      "priority_rank": 7,
+      "urgency": "중간",
+      "potential_audience": 560000,
+      "current_programs": 7,
+      "recommended_programs": 14,
+      "gap_analysis": {
+        "demand_factors": ["공항도시 특성", "다문화 가족 증가", "국제교류 확산"],
+        "supply_shortage": "다문화 관련 전문 프로그램 부족",
+        "opportunity": "인천공항 허브 활용한 세계문화 소개"
+      }
+    },
+    {
+      "region": "대구광역시",
+      "genre": "청년문화",
+      "demand_score": 77.6,
+      "supply_score": 37.8,
+      "gap_score": 51.3,
+      "priority_rank": 8,
+      "urgency": "중간",
+      "potential_audience": 480000,
+      "current_programs": 6,
+      "recommended_programs": 12,
+      "gap_analysis": {
+        "demand_factors": ["청년층 문화 활동 증가", "스타트업 생태계", "창의적 문화 수요"],
+        "supply_shortage": "청년 대상 전문 방송 시간 부족",
+        "opportunity": "청년 창업, 문화예술 활동 조명"
+      }
+    },
+    {
+      "region": "광주광역시",
+      "genre": "예술·문화",
+      "demand_score": 86.4,
+      "supply_score": 42.7,
+      "gap_score": 50.6,
+      "priority_rank": 9,
+      "urgency": "중간",
+      "potential_audience": 350000,
+      "current_programs": 9,
+      "recommended_programs": 18,
+      "gap_analysis": {
+        "demand_factors": ["비엔날레 도시", "예술 교육 열기", "문화예술 전통"],
+        "supply_shortage": "현대미술 전문 프로그램 부족",
+        "opportunity": "아시아 문화전당 연계 고품질 예술 프로그램"
+      }
+    },
+    {
+      "region": "대전광역시",
+      "genre": "과학기술",
+      "demand_score": 89.1,
+      "supply_score": 44.3,
+      "gap_score": 50.3,
+      "priority_rank": 10,
+      "urgency": "중간",
+      "potential_audience": 420000,
+      "current_programs": 8,
+      "recommended_programs": 16,
+      "gap_analysis": {
+        "demand_factors": ["과학도시 특성", "연구기관 집중", "과학 교육 수요"],
+        "supply_shortage": "첨단과학 대중화 프로그램 부족",
+        "opportunity": "KAIST, ETRI 등 연구기관 협력 콘텐츠"
+      }
+    },
+    {
+      "region": "울산광역시",
+      "genre": "산업·기술",
+      "demand_score": 75.2,
+      "supply_score": 38.9,
+      "gap_score": 48.3,
+      "priority_rank": 11,
+      "urgency": "낮음",
+      "potential_audience": 280000,
+      "current_programs": 5,
+      "recommended_programs": 10,
+      "gap_analysis": {
+        "demand_factors": ["산업도시 정체성", "첨단 제조업", "환경친화 기술"],
+        "supply_shortage": "산업 기술 전문 프로그램 부족",
+        "opportunity": "친환경 에너지, 스마트 공장 등 미래 산업"
+      }
+    },
+    {
+      "region": "세종특별자치시",
+      "genre": "정책·행정",
+      "demand_score": 72.8,
+      "supply_score": 37.1,
+      "gap_score": 49.1,
+      "priority_rank": 12,
+      "urgency": "낮음",
+      "potential_audience": 180000,
+      "current_programs": 4,
+      "recommended_programs": 8,
+      "gap_analysis": {
+        "demand_factors": ["행정수도 특성", "정책 관심도", "공무원 집중"],
+        "supply_shortage": "정책 해설 전문 프로그램 부족",
+        "opportunity": "시민 친화적 정책 해설, 행정 혁신 사례"
+      }
+    }
+  ],
+  "regional_insights": {
+    "highest_gap_regions": ["강원도", "전라북도", "제주도"],
+    "lowest_gap_regions": ["서울", "경기도", "충청북도"],
+    "emerging_demand_genres": ["환경·생태", "전통문화", "과학기술", "지역 다큐멘터리"],
+    "oversupplied_genres": ["연예·오락", "스포츠 중계", "일반 뉴스"]
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "강원도 지역 특화 다큐멘터리 제작 지원",
+      "전라북도 전통문화 프로그램 신설",
+      "제주도 환경·생태 콘텐츠 확대"
+    ],
+    "mid_term_strategies": [
+      "지역별 제작 인프라 구축",
+      "지역 방송사와 중앙 방송사 협력 체계",
+      "지역 특성화 채널 운영 검토"
+    ],
+    "long_term_vision": [
+      "전국적 콘텐츠 균형 달성",
+      "지역 문화 다양성 보장",
+      "시청자 만족도 향상"
+    ]
+  },
+  "economic_impact": {
+    "potential_market_size": "1,247억원",
+    "job_creation_estimate": 3420,
+    "regional_economic_boost": "연간 856억원"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "data_counts": {
+    "broadcast_industry": 15847,
+    "ki_viewer_index": 8932,
+    "media_usage_behavior": 12456
+  },
+  "ki_statistics": {
+    "average_score": "76.3",
+    "max_score": "94.8",
+    "min_score": "32.1",
+    "high_quality_programs": 2156
+  },
+  "last_updated": "2025-06-28T11:30:00.000Z",
+  "generated_at": "2025-06-28T12:45:30.123Z",
+  "data_quality": {
+    "completeness": 98.7,
+    "accuracy": 96.2,
+    "freshness_hours": 6
+  },
+  "trending_genres": [
+    { "genre": "드라마", "growth_rate": 15.3, "count": 2847 },
+    { "genre": "예능", "growth_rate": 12.8, "count": 1923 },
+    { "genre": "뉴스", "growth_rate": 8.7, "count": 3156 },
+    { "genre": "다큐멘터리", "growth_rate": 22.1, "count": 892 },
+    { "genre": "스포츠", "growth_rate": 5.4, "count": 1234 }
+  ],
+  "regional_distribution": {
+    "서울": 35.2,
+    "경기": 18.7,
+    "부산": 8.9,
+    "대구": 6.4,
+    "인천": 5.8,
+    "광주": 4.3,
+    "대전": 4.1,
+    "기타": 16.6
+  }
+}
