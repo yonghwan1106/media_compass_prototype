@@ -8,8 +8,12 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Chart.js -->
+    <!-- Chart.js with advanced plugins -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     
     <!-- 인라인 SVG 아이콘 사용 (CORS 문제 해결) -->
     
@@ -18,21 +22,51 @@
         /* 폰트 및 전역 스타일 */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
+        /* CSS 변수 - 라이트 테마 */
+        :root {
+            --bg-primary: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --bg-secondary: rgba(255, 255, 255, 0.95);
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-accent: #3b82f6;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-hover: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* 다크 테마 */
+        [data-theme="dark"] {
+            --bg-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --bg-secondary: rgba(15, 23, 42, 0.95);
+            --bg-card: rgba(30, 41, 59, 0.9);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-accent: #60a5fa;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --card-hover: rgba(30, 41, 59, 0.95);
+        }
+        
         * {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--bg-primary);
             min-height: 100vh;
+            color: var(--text-primary);
         }
         
         /* 네비게이션 바 개선 */
         nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px var(--shadow-color);
         }
         
         /* 모바일 네비게이션 */
@@ -97,9 +131,9 @@
             }
         }
         
-        /* 커스텀 애니메이션 */
+        /* 고급 애니메이션 효과 */
         .fade-in {
-            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         @keyframes fadeIn {
@@ -114,12 +148,123 @@
         }
         
         .slide-in {
-            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         @keyframes slideIn {
             from { transform: translateX(-100%) scale(0.9); opacity: 0; }
             to { transform: translateX(0) scale(1); opacity: 1; }
+        }
+        
+        /* 페이지 전환 애니메이션 */
+        .page-transition {
+            animation: pageTransition 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes pageTransition {
+            0% { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.98);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* 숫자 카운팅 애니메이션 */
+        .counter-animation {
+            animation: counterPulse 0.6s ease-in-out;
+        }
+        
+        @keyframes counterPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* 카드 스태거 애니메이션 */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: staggerFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .stagger-item:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-item:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-item:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-item:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-item:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes staggerFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 진보된 호버 효과 */
+        .advanced-hover {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .advanced-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+        
+        .advanced-hover:hover::before {
+            left: 100%;
+        }
+        
+        .advanced-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--shadow-color);
+        }
+        
+        /* 로딩 애니메이션 개선 */
+        .pulse-dot {
+            animation: pulseDot 2s infinite;
+        }
+        
+        @keyframes pulseDot {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: scale(1.2); 
+                opacity: 0.7; 
+            }
+        }
+        
+        /* 차트 애니메이션 */
+        .chart-animate {
+            animation: chartSlideIn 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes chartSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* 테마 전환 애니메이션 */
+        .theme-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         /* 향상된 로딩 스피너 */
@@ -289,17 +434,18 @@
         /* 향상된 카드 호버 효과 */
         .card-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--bg-card);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
         }
         
         .card-hover:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.1),
-                0 0 0 1px rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.95);
+                0 20px 40px var(--shadow-color),
+                0 0 0 1px var(--border-color);
+            background: var(--card-hover);
         }
         
         /* 네비게이션 개선 */
@@ -467,6 +613,53 @@
         .hidden { display: none !important; }
         .show { display: block !important; }
         
+        /* 스크린 리더 전용 클래스 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* 포커스 시에만 보이는 스킵 링크 */
+        .sr-only.focus\:not-sr-only:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 0.5rem 1rem;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+        }
+        
+        /* 포커스 표시 개선 */
+        .nav-btn:focus,
+        button:focus,
+        input:focus,
+        select:focus {
+            outline: 2px solid var(--text-accent);
+            outline-offset: 2px;
+        }
+        
+        /* 고대비 모드 지원 */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-color: rgba(0, 0, 0, 0.8);
+                --text-secondary: #000000;
+            }
+            
+            [data-theme="dark"] {
+                --border-color: rgba(255, 255, 255, 0.8);
+                --text-secondary: #ffffff;
+            }
+        }
+        
         /* 글래스모피즘 효과 */
         .glass {
             background: rgba(255, 255, 255, 0.25);
@@ -497,9 +690,169 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
+        /* 고급 차트 컨테이너 */
+        .chart-container {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .chart-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px var(--shadow-color);
+        }
+        
+        .chart-container canvas {
+            max-height: 400px;
+            transition: all 0.3s ease;
+        }
+        
+        /* 차트 헤더 */
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .chart-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .chart-control-btn {
+            padding: 6px 12px;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .chart-control-btn:hover,
+        .chart-control-btn.active {
+            background: var(--text-accent);
+            color: white;
+            border-color: var(--text-accent);
+        }
+        
+        /* 인터랙티브 차트 툴팁 */
+        .chart-tooltip {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+        
+        /* 차트 범례 커스터마이제이션 */
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+            justify-content: center;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .legend-item:hover {
+            color: var(--text-primary);
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+        
+        /* 차트 로딩 애니메이션 */
+        .chart-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            color: var(--text-secondary);
+        }
+        
+        .chart-loading::after {
+            content: '';
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--text-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 12px;
+        }
+        
+        /* 차트 zoom 컨트롤 */
+        .zoom-controls {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .chart-container:hover .zoom-controls {
+            opacity: 1;
+        }
+        
+        .zoom-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .zoom-btn:hover {
+            background: var(--text-accent);
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
+    <!-- 스킵 네비게이션 링크 -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium z-50">
+        메인 콘텐츠로 바로가기
+    </a>
+    
     <!-- 네비게이션 바 -->
     <nav class="bg-white shadow-lg border-b">
         <div class="container mx-auto px-4">
@@ -512,28 +865,33 @@
                     <div>
                         <h1 class="text-xl font-bold text-gray-800">Media Compass</h1>
                         <p class="text-sm text-gray-600">미디어 생태계 블라인드스팟 탐지</p>
-                        <p class="text-xs text-blue-600 font-medium">2025년 제1회 방송통신위원회 공공데이터 분석·활용 공모전 출품작</p>
+                        <p class="text-xs text-blue-600 font-medium">제1회 방송통신위원회 공공데이터 분석·활용 공모전 출품작</p>
                     </div>
                 </div>
                 
                 <!-- 데스크톱 네비게이션 메뉴 -->
-                <div class="desktop-nav flex space-x-1">
-                    <button onclick="showPage('dashboard')" class="nav-btn nav-active px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        대시보드
+                <nav class="desktop-nav flex space-x-1" role="navigation" aria-label="주요 네비게이션">
+                    <button onclick="showPage('dashboard')" class="nav-btn nav-active px-4 py-2 rounded-lg text-sm font-medium transition-colors" 
+                            role="tab" aria-selected="true" aria-controls="dashboard-page" tabindex="0">
+                        <span data-i18n="nav-dashboard">대시보드</span>
                     </button>
-                    <button onclick="showPage('hidden-gems')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors">
-                        Hidden Gems
+                    <button onclick="showPage('hidden-gems')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                            role="tab" aria-selected="false" aria-controls="hidden-gems-page" tabindex="-1">
+                        <span data-i18n="nav-hidden-gems">Hidden Gems</span>
                     </button>
-                    <button onclick="showPage('content-gaps')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors">
-                        Content Gap
+                    <button onclick="showPage('content-gaps')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                            role="tab" aria-selected="false" aria-controls="content-gaps-page" tabindex="-1">
+                        <span data-i18n="nav-content-gap">Content Gap</span>
                     </button>
-                    <button onclick="showPage('data-viewer')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors">
-                        데이터 뷰어
+                    <button onclick="showPage('data-viewer')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                            role="tab" aria-selected="false" aria-controls="data-viewer-page" tabindex="-1">
+                        <span data-i18n="nav-data-viewer">데이터 뷰어</span>
                     </button>
-                    <button onclick="showPage('about')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors">
-                        About
+                    <button onclick="showPage('about')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                            role="tab" aria-selected="false" aria-controls="about-page" tabindex="-1">
+                        <span data-i18n="nav-about">About</span>
                     </button>
-                </div>
+                </nav>
                 
                 <!-- 모바일 햄버거 메뉴 -->
                 <button class="mobile-nav-toggle p-2 rounded-lg text-gray-600 hover:bg-gray-100" onclick="toggleMobileNav()">
@@ -542,19 +900,42 @@
                     </svg>
                 </button>
                 
-                <!-- 상태 표시 -->
+                <!-- 상태 표시 및 테마 토글 -->
                 <div class="flex items-center space-x-3">
-                    <div class="flex items-center space-x-2 bg-green-50 px-3 py-2 rounded-full border border-green-200">
-                        <div class="w-3 h-3 bg-green-500 rounded-full pulse-dot"></div>
-                        <span class="text-sm text-green-700 font-medium">실시간 연결</span>
-                    </div>
-                    <div class="text-xs text-gray-500">
-                        <span>v1.0.0</span>
-                    </div>
+                    <!-- 테마 토글 버튼 -->
+                    <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" title="테마 변경">
+                        <svg id="theme-icon-light" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- 언어 토글 버튼 -->
+                    <button id="lang-toggle" onclick="toggleLanguage()" class="px-3 py-1 text-xs font-medium rounded-full border transition-colors" title="언어 변경">
+                        <span id="lang-text">한국어</span>
+                    </button>
+                    
+
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- 가상 데이터 안내 배너 -->
+    <div class="bg-amber-50 border-b border-amber-200 py-2">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center space-x-2 text-amber-800 text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="font-medium">🔍 프로토타입:</span>
+                <span>실제 KCC 공공데이터 구조 기반 가상데이터 사용 중</span>
+                <span class="text-amber-600">· 실제 API 연동 예정</span>
+            </div>
+        </div>
+    </div>
 
     <!-- 모바일 네비게이션 오버레이 -->
     <div id="mobile-nav-overlay" class="mobile-nav-overlay" onclick="closeMobileNav()"></div>
@@ -590,58 +971,114 @@
     </div>
 
     <!-- 메인 콘텐츠 -->
-    <main class="container mx-auto px-4 py-8">
+    <main id="main-content" class="container mx-auto px-4 py-8" role="main" aria-label="메인 콘텐츠 영역">
         <!-- 대시보드 페이지 -->
-        <div id="dashboard-page" class="page fade-in">
+        <div id="dashboard-page" class="page fade-in" role="tabpanel" aria-labelledby="dashboard-tab">
             <!-- 헤더 -->
-            <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">Media Compass</h1>
-                <p class="text-xl text-gray-600 mb-6">미디어 생태계 블라인드스팟 탐지 플랫폼</p>
+            <header class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="title-main">Media Compass</h1>
+                <p class="text-xl text-gray-600 mb-6" data-i18n="subtitle-main">미디어 생태계 블라인드스팟 탐지 플랫폼</p>
                 <div class="flex justify-center space-x-4">
                     <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">KCC 공공데이터 활용</span>
                     <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">AI 기반 분석</span>
                     <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">실시간 추천</span>
                 </div>
-            </div>
+            </header>
 
-            <!-- 시스템 상태 카드 -->
-            <div id="status-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <!-- 로딩 중 표시 -->
-                <div class="col-span-full flex justify-center py-8">
-                    <div class="loading-spinner"></div>
+            <!-- 플랫폼 소개 패널 (접을 수 있음) -->
+            <div id="platform-intro" class="bg-white rounded-lg shadow-md p-6 mb-8 border-l-4 border-blue-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-900">플랫폼 소개</h2>
+                    </div>
+                    <button onclick="togglePlatformIntro()" id="intro-toggle" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="intro-content" class="space-y-4">
+                    <p class="text-gray-700 leading-relaxed">
+                        <strong>Media Compass</strong>는 한국방송통신위원회(KCC) 공공데이터를 활용하여 
+                        미디어 생태계의 블라인드스팟을 탐지하고 분석하는 AI 기반 플랫폼입니다.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                        <div class="text-center p-3 bg-blue-50 rounded-lg">
+                            <div class="text-2xl font-bold text-blue-600">247개</div>
+                            <div class="text-sm text-gray-600">방송 프로그램 분석</div>
+                        </div>
+                        <div class="text-center p-3 bg-purple-50 rounded-lg">
+                            <div class="text-2xl font-bold text-purple-600">AI 기반</div>
+                            <div class="text-sm text-gray-600">추천 및 예측 분석</div>
+                        </div>
+                        <div class="text-center p-3 bg-green-50 rounded-lg">
+                            <div class="text-2xl font-bold text-green-600">실시간</div>
+                            <div class="text-sm text-gray-600">데이터 기반 의사결정</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 text-center">
+                            💡 좌측 메뉴에서 Hidden Gems, Content Gap 등의 분석 기능을 탐색해보세요
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <!-- 데이터 현황 -->
+            <!-- 활용 공공데이터 -->
             <div id="data-summary" class="bg-white rounded-lg shadow-md p-6 mb-8 hidden">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">데이터 현황</h2>
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <span class="text-blue-600 text-xl">📊</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">활용 공공데이터</h2>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- 데이터 카운트 -->
-                    <div class="text-center p-4 bg-blue-50 rounded-lg">
-                        <div class="w-12 h-12 bg-blue-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                            <span class="text-white text-xl">📊</span>
+                    <div class="text-center p-6 bg-blue-50 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800">방송산업 실태조사</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">방송산업 실태조사</h3>
                         <p class="text-3xl font-bold text-blue-600" id="broadcast-count">-</p>
                         <p class="text-sm text-gray-600">건</p>
                     </div>
                     
-                    <div class="text-center p-4 bg-purple-50 rounded-lg">
-                        <div class="w-12 h-12 bg-purple-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                            <span class="text-white text-xl">📈</span>
+                    <div class="text-center p-6 bg-purple-50 rounded-lg">
+                        <div class="w-12 h-12 bg-purple-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800">KI 시청자평가지수</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">KI 시청자평가지수</h3>
                         <p class="text-3xl font-bold text-purple-600" id="ki-count">-</p>
                         <p class="text-sm text-gray-600">건</p>
                     </div>
                     
-                    <div class="text-center p-4 bg-green-50 rounded-lg">
-                        <div class="w-12 h-12 bg-green-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                            <span class="text-white text-xl">🎯</span>
+                    <div class="text-center p-6 bg-green-50 rounded-lg">
+                        <div class="w-12 h-12 bg-green-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800">방송매체 이용행태</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">방송매체 이용행태</h3>
                         <p class="text-3xl font-bold text-green-600" id="usage-count">-</p>
                         <p class="text-sm text-gray-600">건</p>
+                    </div>
+                </div>
+                
+                <!-- 대회 출품작 표시 -->
+                <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+                    <div class="flex items-center justify-center space-x-2">
+                        <span class="text-blue-600">🏆</span>
+                        <span class="font-semibold text-blue-800">2025 KCC 공공데이터 분석·활용 대회 출품작</span>
+                        <span class="text-blue-600">🏆</span>
                     </div>
                 </div>
 
@@ -885,9 +1322,27 @@
 
                     <h2 class="text-2xl font-semibold text-gray-800 mb-4">활용 데이터</h2>
                     <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
-                        <li>방송산업 실태조사 정보 (API ID: 15108104)</li>
-                        <li>KI 시청자평가지수 조사 정보 (API ID: 15108103)</li>
-                        <li>방송매체 이용행태조사 정보 (API ID: 15108061)</li>
+                        <li>방송통신위원회_방송산업 실태조사 정보<br>
+                            <a href="https://apis.data.go.kr/1570100/KccBisiInfoService" 
+                               class="text-blue-600 hover:text-blue-800 underline text-sm ml-4" 
+                               target="_blank" rel="noopener noreferrer">
+                               https://apis.data.go.kr/1570100/KccBisiInfoService
+                            </a>
+                        </li>
+                        <li>방송통신위원회_KI 시청자평가지수 조사 정보<br>
+                            <a href="http://apis.data.go.kr/1741000/KIViewerEvaluationInfo" 
+                               class="text-blue-600 hover:text-blue-800 underline text-sm ml-4" 
+                               target="_blank" rel="noopener noreferrer">
+                               http://apis.data.go.kr/1741000/KIViewerEvaluationInfo
+                            </a>
+                        </li>
+                        <li>방송통신위원회_방송매체 이용행태조사 정보<br>
+                            <a href="http://apis.data.go.kr/1741000/BroadcastMediaUsageInfo" 
+                               class="text-blue-600 hover:text-blue-800 underline text-sm ml-4" 
+                               target="_blank" rel="noopener noreferrer">
+                               http://apis.data.go.kr/1741000/BroadcastMediaUsageInfo
+                            </a>
+                        </li>
                     </ul>
 
                     <h2 class="text-2xl font-semibold text-gray-800 mb-4">기술 스택</h2>
