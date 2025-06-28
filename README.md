@@ -27,9 +27,14 @@ media_compass_prototype/
 
 ## 🔥 실행 방법
 
+### 🌐 온라인 데모 (권장)
+**배포된 사이트에서 바로 확인하세요:**
+- **Vercel**: [https://media-compass-prototype.vercel.app](https://media-compass-prototype.vercel.app)
+- **GitHub Pages**: [https://yonghwan1106.github.io/media_compass_prototype](https://yonghwan1106.github.io/media_compass_prototype)
+
+### 💻 로컬 실행
 ⚠️ **중요**: CORS 정책으로 인해 로컬 서버 실행이 필수입니다.
 
-### 방법 1: 로컬 서버 실행 (필수)
 ```bash
 # Python 3
 python -m http.server 8080
